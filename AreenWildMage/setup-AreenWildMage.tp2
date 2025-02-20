@@ -1,0 +1,63 @@
+BACKUP ~AreenWildMage/Backup~
+AUTHOR ~Boresal (borsal@gmail.com)~
+
+
+VERSION ~v1.0~
+
+LANGUAGE
+    ~English~
+    ~English~
+    ~AreenWildMage/english/BESetup.tra~
+    ~AreenWildMage/english/BEnames.tra~
+
+
+
+  BEGIN @1
+
+
+
+//creature files
+
+COPY "AreenWildMage\CRE\BEAren.cre" "override"
+    SAY NAME1 @2
+    SAY NAME2 @2
+    SAY BIO @3
+    WRITE_ASCII DIALOG ~BEAren~
+    WRITE_ASCII SCRIPT_OVERRIDE ~BEAren~
+
+
+  //Dialog
+ COMPILE "AreenWildMage\dialog"
+ 
+
+
+ APPEND ~Pdialog.2da~
+~BEAren             BEArenp         BEArenj~
+UNLESS ~BEAren~
+
+APPEND ~Interdia.2da~
+~BEAren              bBEAren~
+UNLESS ~BEAren~
+
+
+ //scripts
+   COMPILE "AreenWildMage\scripts\BEAren.baf"
+
+
+//Area patching
+
+COPY_EXISTING ~ar2300.are~ ~override~
+  LPF fj_are_structure
+    INT_VAR
+    fj_loc_x          = 1200
+    fj_loc_y          = 3268
+    fj_schedule       = 0b111111111111111111111110
+    fj_orientation    = 15     //SSE
+    STR_VAR
+    fj_structure_type = actor
+    fj_name           = Areen
+    fj_cre_resref     = BEAren
+  END
+
+
+
