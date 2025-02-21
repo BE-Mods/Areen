@@ -1,9 +1,12 @@
 override/BEAren.cre
+override/BQUAYL.dlg
 override/BXZAR.dlg
 override/BMONTA.dlg
 override/BEARENJ.dlg
 override/BMINSC.dlg
-override/DESSLO.dlg
+override/BEDWIN.dlg
+override/BNEERA.dlg
+override/BXANNN.dlg
 override/BEAREN.dlg
 override/BEARENP.dlg
 override/BBEAREN.dlg
@@ -12,3 +15,6 @@ override/Pdialog.2da
 override/Interdia.2da
 override/BEAren.bcs
 override/ar2300.are
+override/BESTAF1.ITM
+override/BESCRL1.ITM
+override/TARNES.cre

@@ -10,6 +10,7 @@ SAY ~I see. Yes, quite. Well, I suppose our arrangement has run its course. Rath
 
 END
 
+
 IF ~Global("KickedOut", "LOCALS", 1)~ THEN BEGIN 1
 
 SAY ~Well, well. If it isn't my former traveling companions. I don't suppose you've come to discuss the theoretical applications of controlled wild magic surges?~
@@ -18,3 +19,14 @@ SAY ~Well, well. If it isn't my former traveling companions. I don't suppose you
 ++ ~Just passing through. Good luck with your surges.~ EXIT
 
 END
+
+
+IF ~Global("KickedOut", "LOCALS", 2) !InParty("Neera")~ THEN BEGIN 2
+
+SAY ~I see you've come to your senses about proper magical standards.~
+
+++ ~Yes Areen, please join me.~ DO ~JoinParty() SetDialog("BEAren") SetGlobal("KickedOut", "LOCALS", 1)~ EXIT
+++ ~This changes nothing. Farewell.~ EXIT
+
+END
+

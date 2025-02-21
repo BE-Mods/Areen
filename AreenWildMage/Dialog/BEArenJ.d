@@ -1,19 +1,14 @@
 BEGIN BEArenJ
 
 
-//interjection with Neera
+// with CHARNAME about the future
+//IF ~AreaCheck("AR0123") Global("BEfinale","LOCALS",0)~ THEN BEGIN 0
 
-//remove the desslo below
+//SAY ~say something~
 
-IF ~~ THEN BEGIN 0
+//++ ~reply one~ DO ~SetDialog("BEArenJ") SetGlobal("BEfinale", "LOCALS", 1)~ EXIT
+//++ ~reply two~ DO ~SetDialog("BEArenJ") SetGlobal("BEfinale", "LOCALS", 1)~ EXIT
 
-SAY ~Be mindful of what you say here. I wouldn't trust this Kolssed fellow much.~ IF ~~ THEN EXTERN DESSLO 8
-END
+//END
 
 
-
-ADD_TRANS_TRIGGER DESSLO 0 ~!InParty("BEAren")~ DO 0
-
-EXTEND_TOP DESSLO 0
-  +~InParty("BEAren")~+ #17336  EXTERN BEArenJ 0
-END

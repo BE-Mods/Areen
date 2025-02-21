@@ -2,8 +2,9 @@ BEGIN BEAren
 
 IF ~NumTimesTalkedTo(0)~ THEN BEGIN 0
 
-SAY ~I say, rather fortunate to find fellow travelers. I'm Areen, practitioner of wild magic, at your service.~
-= ~Had a spot of trouble with bandits last night, lost rather valuable research materials and my spell book. Traveling alone has proved... less than ideal. You appear a capable lot. Might we discuss a mutually beneficial arrangement?~
+SAY ~Yes? I'm Areen, practitioner of wild magic, at your service.~
+= ~I say, rather fortunate to find fellow travelers. I had a spot of trouble with bandits last night and lost rather valuable research materials and my spell book.~
+= ~Traveling alone has proved... less than ideal. You appear a capable lot. Might we discuss a mutually beneficial arrangement?~
 
 ++ ~We could use someone of your talents. Welcome aboard.~ DO ~JoinParty()~ EXIT
 ++ ~Sorry, but we're not looking for company.~ EXIT

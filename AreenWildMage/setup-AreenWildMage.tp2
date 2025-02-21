@@ -26,22 +26,22 @@ COPY "AreenWildMage\CRE\BEAren.cre" "override"
     WRITE_ASCII SCRIPT_OVERRIDE ~BEAren~
 
 
-  //Dialog
- COMPILE "AreenWildMage\dialog"
- 
+//Dialog
 
+COMPILE "AreenWildMage\dialog"
 
- APPEND ~Pdialog.2da~
-~BEAren             BEArenp         BEArenj~
+APPEND ~Pdialog.2da~
+~BEAren BEArenp BEArenj~
 UNLESS ~BEAren~
 
 APPEND ~Interdia.2da~
-~BEAren              bBEAren~
+~BEAren bBEAren~
 UNLESS ~BEAren~
 
 
- //scripts
-   COMPILE "AreenWildMage\scripts\BEAren.baf"
+//scripts
+
+COMPILE "AreenWildMage\scripts\BEAren.baf"
 
 
 //Area patching
@@ -59,5 +59,16 @@ COPY_EXISTING ~ar2300.are~ ~override~
     fj_cre_resref     = BEAren
   END
 
+
+//New items
+
+COPY "AreenWildMage\itm\BESTAF1.ITM" "override"
+COPY "AreenWildMage\itm\BESCRL1.ITM" "override"
+
+// Creature patching
+
+COPY_EXISTING ~TARNES.cre~ ~override~
+              ADD_CRE_ITEM ~BESTAF1~ #0 #0 #0 ~identified~ ~INV1~       //adding Areen's staff
+              ADD_CRE_ITEM ~BESCRL1~ #1 #1 #0 ~identified~ ~INV6~       //adding Nahal spell
 
 
