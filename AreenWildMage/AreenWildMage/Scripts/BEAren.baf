@@ -1,0 +1,435 @@
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+    XPGT(Player1,31999)
+    XPLT(Myself,32000)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        ChangeStat(Myself,XP,32000,SET)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+    XPGT(Player1,15999)
+    XPLT(Myself,16000)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        ChangeStat(Myself,XP,16000,SET)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+    XPGT(Player1,7999)
+    XPLT(Myself,8000)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        ChangeStat(Myself,XP,8000,SET)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+    XPGT(Player1,3999)
+    XPLT(Myself,4000)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        ChangeStat(Myself,XP,4000,SET)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+    XPGT(Player1,1999)
+    XPLT(Myself,2000)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        ChangeStat(Myself,XP,4000,SET)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+IF
+    Global("BD_JOINXP","LOCALS",0)
+    InParty(Myself)
+THEN
+    RESPONSE #100
+        SetInterrupt(FALSE)
+        SetGlobal("BD_JOINXP","LOCALS",1)
+        AddJournalEntry(@5100, QUEST)
+        SetInterrupt(TRUE)
+END
+
+// Journal Entries for finding items
+IF
+  Global("BEAreenFindScrol1","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BESCRL1")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5101, QUEST)
+    SetGlobal("BEAreenFindScrol1","GLOBAL",1)
+END
+
+IF
+  Global("BEAreenFindScrol2","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BESCRL2")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5102, QUEST)
+    SetGlobal("BEAreenFindScrol2","GLOBAL",1)
+END
+
+IF
+  Global("BEAreenFindScrol3","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BESCRL3")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5103, QUEST)
+    SetGlobal("BEAreenFindScrol3","GLOBAL",1)
+END
+
+IF
+  Global("BEAreenFindStaf","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BESTAF1")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5104, QUEST)
+    SetGlobal("BEAreenFindStaf","GLOBAL",1)
+END
+
+IF
+  Global("BEAreenFindRobe","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BEROBE1")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5105, QUEST)
+    SetGlobal("BEAreenFindRobe","GLOBAL",1)
+END
+
+IF
+  Global("BEAreenFindBook","GLOBAL",0)
+  InParty(Myself)
+  !See([ENEMY])
+  PartyHasItem("BOOK67")
+THEN
+    RESPONSE #100
+    AddJournalEntry(@5106, QUEST)
+    SetGlobal("BEAreenFindBook","GLOBAL",1)
+END
+
+
+// Banters
+// Xazar & Montaron
+IF
+  Global("BEMontaron1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Montaron")
+  InParty("Xzar")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BEMontaron1Timer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BEMontaron1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Montaron")
+  InParty("Xzar")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BEMontaron1Timer","GLOBAL") // The timer has expired
+  Global("BEMontaron1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BEMontaron1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Montaron")
+  InParty("Xzar")
+  !See([ENEMY])
+  Global("BEMontaron1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+
+// Dynaheir & Minsc
+IF
+  Global("BEDynaheir1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Dynaheir")
+  InParty("Minsc")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BEDynaheir1Timer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BEDynaheir1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Dynaheir")
+  InParty("Minsc")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BEDynaheir1Timer","GLOBAL") // The timer has expired
+  Global("BEDynaheir1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BEDynaheir1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Dynaheir")
+  InParty("Minsc")
+  !See([ENEMY])
+  Global("BEDynaheir1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+
+// Xan
+IF
+  Global("BEXan1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Xan")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BEXan1Timer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BEXan1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Xan")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BEXan1Timer","GLOBAL") // The timer has expired
+  Global("BEXan1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BEXan1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Xan")
+
+  !See([ENEMY])
+  Global("BEXan1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+
+// Quayle
+IF
+  Global("BEQuayle1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Quayle")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BEQuayleTimer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BEQuayle1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Quayle")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BEQuayle1Timer","GLOBAL") // The timer has expired
+  Global("BEQuayle1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BEQuayle1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Quayle")
+  !See([ENEMY])
+  Global("BEQuayle1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+
+// Edwin
+IF
+  Global("BEEdwin1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Edwin")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BEEdwin1Timer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BEEdwin1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Edwin")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BEEdwin1Timer","GLOBAL") // The timer has expired
+  Global("BEEdwin1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BEEdwin1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Edwin")
+  !See([ENEMY])
+  Global("BEEdwin1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+
+// Neera
+IF
+  Global("BENeera1","GLOBAL",0)
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BENeera1Timer","GLOBAL",600) // We set a timer for INT seconds
+    SetGlobal("BENeera1","GLOBAL",1)
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BENeera1Timer","GLOBAL") // The timer has expired
+  Global("BENeera1","GLOBAL",1)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BENeera1","GLOBAL",2)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  Global("BENeera1","GLOBAL",2)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+IF
+  Global("BENeera1","GLOBAL",3)
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BENeera2Timer","GLOBAL",60) // We set a timer for INT seconds
+    SetGlobal("BENeera1","GLOBAL",4)
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BENeera2Timer","GLOBAL") // The timer has expired
+  Global("BENeera1","GLOBAL",4)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BENeera1","GLOBAL",5)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  Global("BENeera1","GLOBAL",5)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+IF
+  Global("BENeera1","GLOBAL",6)
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+THEN
+    RESPONSE #100
+    RealSetGlobalTimer("BENeera3Timer","GLOBAL",6) // We set a timer for INT seconds
+    SetGlobal("BENeera1","GLOBAL",7)
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  RealGlobalTimerExpired("BENeera3Timer","GLOBAL") // The timer has expired
+  Global("BENeera1","GLOBAL",7)  // The timer has been set
+THEN
+    RESPONSE #100
+    SetGlobal("BENeera1","GLOBAL",8)  // The timer has now expired, it is actually time to run the banter
+END
+
+IF
+  InParty(Myself)
+  InParty("Neera")
+  !See([ENEMY])
+  Global("BENeera1","GLOBAL",8)  // Time to trigger the banter
+THEN
+    RESPONSE #100
+    Interact("BEAren")                 //  calls forth a banter from BMyNPC.d if we try Interact(Player1)
+END
+
+// Undercity speach
+IF
+    InParty(Myself)
+    AreaCheck("AR0123")
+    !ActuallyInCombat()
+    Global("BEUndercity","GLOBAL",0)
+THEN
+    RESPONSE #100
+    SetGlobal("BEUndercity","GLOBAL",1)
+    StartDialogueNoSet(Player1)
+END
