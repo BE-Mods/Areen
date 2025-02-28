@@ -1,4 +1,4 @@
-BEGIN BEArenP
+BEGIN BEARENP
 
 IF ~Global("KickedOut", "LOCALS", 0)~ THEN BEGIN 0
 
